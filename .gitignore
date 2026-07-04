@@ -25,3 +25,7 @@ default.profraw
 *.profraw
 
 web/tsconfig.tsbuildinfo
+
+# media / recordings
+*.mp4
+*.mov

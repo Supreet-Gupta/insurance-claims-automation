@@ -4,6 +4,7 @@ import type { InsurerResult, SearchDetails } from './types'
 import { SearchForm } from './components/SearchForm'
 import { SummaryBar } from './components/SummaryBar'
 import { ResultsGrid } from './components/ResultsGrid'
+import { LivePanel } from './components/LivePanel'
 
 export default function App() {
   const [runId, setRunId] = useState<string | null>(null)
@@ -105,7 +106,12 @@ export default function App() {
       ) : (
         <main className="results">
           <SummaryBar results={results} />
-          <ResultsGrid results={results} runId={runId} />
+          <div className="results-layout">
+            <div className="results-left">
+              <ResultsGrid results={results} runId={runId} />
+            </div>
+            <LivePanel results={results} />
+          </div>
         </main>
       )}
 

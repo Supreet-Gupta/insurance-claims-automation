@@ -1,0 +1,27 @@
+# secrets / env
+.env
+.env.*
+!.env.example
+*.local
+web/.env.local
+orchestrator/.env
+
+# node
+node_modules/
+web/dist/
+*.log
+
+# python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# tooling / os / scratch
+.gstack/
+.DS_Store
+default.profraw
+*.profraw
+
+web/tsconfig.tsbuildinfo

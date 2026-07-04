@@ -1,0 +1,10 @@
+# Core (Phase 3) — orchestrator + realtime writes
+fastapi>=0.115
+uvicorn[standard]>=0.30
+supabase>=2.7
+python-dotenv>=1.0
+pydantic>=2.8
+
+# Live adapters (Phase 4) — installed separately: adds Playwright + a browser download
+# browser-use>=0.1.40
+# langchain-openai>=0.2

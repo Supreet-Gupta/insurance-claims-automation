@@ -16,6 +16,7 @@ export interface InsurerResult {
   status: Status
   amount_found: number | null
   detail: string | null
+  live_view_url: string | null
   updated_at: string
 }
 

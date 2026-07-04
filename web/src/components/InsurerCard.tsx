@@ -65,6 +65,16 @@ export function InsurerCard({ result: r }: { result: InsurerResult }) {
         </span>
       </div>
 
+      {r.status === 'searching' && r.live_view_url && (
+        <iframe
+          className="live-view"
+          src={r.live_view_url}
+          title={`${r.insurer_name} live`}
+          sandbox="allow-scripts allow-same-origin"
+          loading="lazy"
+        />
+      )}
+
       {isWin && hasAmount && <div className="amount">{rupee(Number(r.amount_found))}</div>}
 
       {r.detail && !(isWin && hasAmount) && <div className="card-detail">{r.detail}</div>}

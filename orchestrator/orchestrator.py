@@ -61,10 +61,13 @@ async def _run_demo(result_id, idx, name) -> None:
 async def _run_real(details, row, result_id, name, sem, hints) -> None:
     # Mark "searching" only once this insurer actually gets a browser slot, so with
     # concurrency=1 the cards light up one at a time, matching the single window.
+    async def _emit_live_view(url: str):
+        await db.update_result(result_id, live_view_url=url)
+
     try:
         async with sem:
             await db.update_result(result_id, status="searching")
-            outcome = await generic.run(details, row, hints.get(name))
+            outcome = await generic.run(details, row, hints.get(name), live_view_cb=_emit_live_view)
         await db.update_result(
             result_id,
             status=outcome.status,          # 'success' | 'failed'

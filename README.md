@@ -174,8 +174,7 @@ DEPLOY.md        Railway deployment guide
 
 ## License
 
-No formal license yet — it's a hackathon prototype shared for reference. If you plan to
-build on it, add a license first (e.g. MIT).
+[MIT](./LICENSE) — free to use, fork, modify, and build on. Provided as-is, no warranty.
 
 ## Credits
 

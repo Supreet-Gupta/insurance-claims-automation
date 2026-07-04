@@ -46,8 +46,8 @@ async def _run_one(details, row, idx, demo, sem, hints) -> None:
     elif row.get("adapter_type") == "live":
         await _run_real(details, row, result_id, name, sem, hints)
     else:
-        # Real mode, no adapter built for this insurer — say so honestly.
-        await db.update_result(result_id, status="pending", detail="Adapter not built yet")
+        # Real mode, this insurer isn't in the current featured run.
+        await db.update_result(result_id, status="pending", detail="Not included in this run")
 
 
 async def _run_demo(result_id, idx, name) -> None:
@@ -59,9 +59,11 @@ async def _run_demo(result_id, idx, name) -> None:
 
 
 async def _run_real(details, row, result_id, name, sem, hints) -> None:
-    await db.update_result(result_id, status="searching")
+    # Mark "searching" only once this insurer actually gets a browser slot, so with
+    # concurrency=1 the cards light up one at a time, matching the single window.
     try:
         async with sem:
+            await db.update_result(result_id, status="searching")
             outcome = await generic.run(details, row, hints.get(name))
         await db.update_result(
             result_id,

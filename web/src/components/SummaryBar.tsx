@@ -28,7 +28,7 @@ export function SummaryBar({ results }: { results: InsurerResult[] }) {
         <div className="progress-fill" style={{ width: `${pct}%` }} />
       </div>
       {pending > 0 && (
-        <p className="summary-note">{pending} insurers pending — no adapter built yet.</p>
+        <p className="summary-note">{pending} more insurers available — not included in this run.</p>
       )}
     </div>
   )

@@ -59,13 +59,10 @@ export function InsurerCard({ result: r }: { result: InsurerResult }) {
             {domain(r.insurer_url)} ↗
           </a>
         </div>
-        <div className="card-head-right">
-          <span className={`pill ${pill.cls}`}>
-            {r.status === 'searching' && <span className="dot-pulse" />}
-            {pill.label}
-          </span>
-          {r.adapter_type === 'live' && <span className="live-tag">live agent</span>}
-        </div>
+        <span className={`pill ${pill.cls}`}>
+          {r.status === 'searching' && <span className="dot-pulse" />}
+          {pill.label}
+        </span>
       </div>
 
       {isWin && hasAmount && <div className="amount">{rupee(Number(r.amount_found))}</div>}
